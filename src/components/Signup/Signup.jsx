@@ -26,8 +26,8 @@ const Signup = ({ props }) => {
   };
 
   useEffect(() => {
+    handleFileUpload()
    
-    console.log("Avatar value:", avatar);
   }, [avatar]);
 
   const handleSubmit = async(e) => {
