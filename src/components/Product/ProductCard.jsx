@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import  {React, useState, useContext } from "react";
-=======
 import React, { useState, useContext, useEffect } from "react";
->>>>>>> PriyaCartv4
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
@@ -15,27 +11,14 @@ import { FaDollarSign } from "react-icons/fa";
 
 import ProductDetailsCard from "./ProductDetailsCard.jsx";
 import Ratings from "./Ratings";
-<<<<<<< HEAD
-import axios from "axios"
-import { AuthContext } from "../../context/auth.context";
-=======
 import { AuthContext } from "../../context/auth.context.jsx";
 import { server } from "../../server";
 // import PopupAfterPurchase from "./PopupAfterPurchase.jsx";
 // import GetUserWishlist from "../GetUserWishlist.jsx";
->>>>>>> PriyaCartv4
 
 function ProductCard({ product }) {
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
-<<<<<<< HEAD
-  
-  const { user, setUser } = useContext(AuthContext);
-
-
-  const productName = product.name;
- 
-=======
   const [cartClick, setCartClick] = useState(false);
 
   const [count, setCount] = useState(1);
@@ -159,7 +142,6 @@ function ProductCard({ product }) {
 
   const productName = product.name;
 
->>>>>>> PriyaCartv4
   return (
     <>
       <div className=" w-[260px] h-[370px] bg-white rounded-lg shadow-sm p-3 m-3 relative cursor-pointer">
