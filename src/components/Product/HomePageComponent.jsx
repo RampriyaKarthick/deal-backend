@@ -72,7 +72,7 @@ return (
       ) : (
         <Navbar handleFilterByCategory={handleFilterByCategory} />
       )}
-  />
+
        <SearchProduct handleSearch={handleSearch} />
       <div className="flex flex-wrap bg-gray-100">
      

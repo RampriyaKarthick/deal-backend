@@ -3,7 +3,7 @@ import { server } from "../server";
  
 const api = axios.create({
   // make sure you use PORT = 5005 (the port where our server is running)
-  baseURL: `${server}/user`
+  baseURL: `${server}/user`|| "http://localhost:8000"
   // withCredentials: true // => you might need this option if using cookies and sessions
 });
  
