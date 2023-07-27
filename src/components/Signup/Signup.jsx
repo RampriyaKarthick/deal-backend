@@ -49,7 +49,7 @@ const Signup = ({ props }) => {
         setToken(actualToken);
         authenticateUser();
         setIsLoggedIn(true);
-        navigate("/profile");
+        navigate("/seller-dashboard");
       } catch (err) {
         if (err.response && err.response.status === 400) {
           setIsExistingUser(true);

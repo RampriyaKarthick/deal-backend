@@ -22,7 +22,7 @@ const Login = () => {
       setToken(actualToken);
       authenticateUser();
       setIsLoggedIn(true);
-      navigate("/profile");
+      navigate("/seller-dashboard");
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
