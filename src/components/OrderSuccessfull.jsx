@@ -17,9 +17,9 @@ function OrderSuccessfull() {
       <p className="text-lg text-gray-800 mb-2">Your order will be delivered within 24 hours.</p>
       <p className="text-lg text-gray-800 mb-2">Please have the payment amount ready upon delivery.</p>
       <p className="text-lg text-gray-800 mb-2">We also accept credit cards for payment.</p>
-      <p className="text-lg text-gray-800 mb-8">
+      <p className="text-lg text-green-400 mb-8">
           <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
-          Your favorite e-payment option is coming soon!
+          We're expanding our payment options soon!
         </p>
     </div>
       <Confetti {...config} />
