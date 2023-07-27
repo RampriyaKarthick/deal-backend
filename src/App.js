@@ -20,6 +20,7 @@ import UserSettingsPage from "./pages/UserSettingsPage";
 import EditUser from "./components/EditUser"
 import Negotiate from "./components/Product/Negotiate";
 import NegotiatedProducts from "./components/NegotiatedProducts";
+import OrderSuccessfull from "./components/OrderSuccessfull";
 
 function App() {
   return (
@@ -49,7 +50,9 @@ function App() {
 <Route path="/user-settings" element={<PrivatePage><UserSettingsPage/></PrivatePage>} />
 <Route path="/create-product" element={<PrivatePage><CreateProductPage /></PrivatePage>} />
 <Route path="/seller/negotiations" element={<PrivatePage><NegotiatedProducts/></PrivatePage>} />
-<Route path="/edit-form" element={<PrivatePage><EditUser/></PrivatePage>} /></Routes>
+<Route path="/edit-form" element={<PrivatePage><EditUser/></PrivatePage>} />
+<Route path="/order-successful" element={<PrivatePage><OrderSuccessfull/></PrivatePage>}/>
+</Routes>
 </BrowserRouter>
   );
 }

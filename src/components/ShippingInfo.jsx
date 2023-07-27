@@ -1,8 +1,10 @@
 import React , {useState, useContext}from "react";
 import ProfileNavBar from "./ProfileNavBar";
+import { Link , useNavigate} from 'react-router-dom';
 import FetchUser from "./FetchUser";
 import axios from "axios";
 import { server } from "../server";
+import OrderSuccessfull from "./OrderSuccessfull";
 
 
 function ShippingInfo() {
@@ -15,7 +17,8 @@ const user = FetchUser();
   const [country, setCountry] = useState("");
   const [postcode, setPostcode] = useState("");
   const [phonenumber, setPhonenumber] = useState("")
-  
+  const [orderSuccessful, setOrderSuccessful] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
@@ -32,7 +35,17 @@ const user = FetchUser();
       console.log("shipping info from frontend", shippingInfo)
       const userId = user._id
       const sendShippingInfo = await axios.put(`${server}/cart/${userId}/shippinginfo`,shippingInfo )
+      .then (navigate("/order-successful"));
+      setOrderSuccessful(true);
+      setName("")
+      setAddress("")
+      setCity("")
+      setCountry("")
+      setPostcode("")
+      setPhonenumber("")
+    
       
+
     } catch (error) {
       console.log("error while updating shipping info on frontend", error)
       
@@ -44,11 +57,14 @@ const user = FetchUser();
   return (
     <div>
       <ProfileNavBar />
-      <div className="fixed top-1 left-1 w-full bg-[#ffffffea] h-screen">
-        <div className="h-full w- mt-[60px] overflow-y-scroll bg-white flex flex-col shadow-sm">
-          <h1>Shipping info</h1>
-          <div className="border shadow-sm w-[1000px]">
-            <form onSubmit={handleSubmit} className="">
+      <div className="flex justify-center items-center h-screen bg-[#ffffffea]">
+        <div className="w-full max-w-md bg-white p-4 shadow-sm">
+        <div className="flex justify-center">
+        <h1 className="text-2xl font-semibold mb-10">Shipping info</h1>
+        </div>
+        <div className="mx-auto max-w-lg">
+          
+            <form onSubmit={handleSubmit} className="mb-4">
             <div className="w-[300px]">
               <label className="block w-[300px] text-sm font-medium text-gray-700">
                 Name of recipient
@@ -153,20 +169,26 @@ const user = FetchUser();
               </div>
             </div>
             <div>
-              <button
+            <div className="flex justify-center">
+            <button
                 type="submit"
-                className="group relative w-[100px] h-[40px] flex justify-center rounded-md bg-blue-600 hover:bg-blue-700 py-2 px-4 border border-transparent font-medium text-sm"
+                className="group relative w-[100px] h-[40px] flex justify-center rounded-md bg-blue-600 hover:bg-blue-700 py-2 px-4 border border-transparent font-medium text-sm mt-5"
               >
                 Submit
               </button>
-            </div>
+              </div>
+              </div>
 
             </form>
+            {orderSuccessful && (
+            <Link to="/order-successful">
+              <OrderSuccessfull />
+            </Link>
+          )}
           </div>
-
-         
-        </div>
+          </div>
       </div>
+  
     </div>
   );
 }
