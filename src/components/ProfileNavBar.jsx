@@ -216,22 +216,22 @@ function ProfileNavBar({ userEmail, handleFilterByCategory }) {
             >
               Home
             </Link>
-            
-            <Link
-              to="/profile"
-              className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Profile
-            </Link>
 
             <Link
               to="/seller-dashboard"
               className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
             >
-              Become seller
+              Become Seller
+            </Link>
+            
+            <Link
+              to="/profile"
+              className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+            >
+              SellerDashboard
             </Link>
 
-            <Link
+           <Link
               to="/"
               className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
               onClick={logOutUser}

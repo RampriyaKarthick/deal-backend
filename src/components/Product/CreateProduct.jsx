@@ -16,6 +16,7 @@ const CreateProduct = () => {
   const [stock, setStock] = useState(0);
   const [category, setCategory] = useState("");
   const [negotiationPrice, setNegotiationPrice] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   // const [ratings, setRatings] = useState("");
   // const [numberOfReviews, setNumberOfReviews] = useState("");
@@ -65,9 +66,11 @@ const CreateProduct = () => {
       .post(`${server}/product/newproduct`, uploadData,  { headers: { authorization: `Bearer ${gotToken}` }})
       .then((res) => {
         console.log(res);
+        setUpdateSuccess(true);
       })
       .catch((err) => {
         console.log(err);
+        setUpdateSuccess(false);
       });
 
     setName("");
@@ -86,8 +89,8 @@ const CreateProduct = () => {
 
 return (
   <div className="flex flex-col justify-center items-center h-screen">
-  <div className="w-full max-w-md mt-16">
-    <h2 className="text-2xl font-semibold text-center mb-4">Create Product</h2>
+  <div className="w-full max-w-md mt-20">
+    <h2 className="text-2xl font-semibold text-center mt-20 ">Create Product</h2>
     <div className="px-4"></div>
     <form onSubmit={handleSubmit}>
         <br />
@@ -102,6 +105,7 @@ return (
             className="w-full px-3 py-2 border border-gray-300 rounded-sm focus:outline-none"
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your product name"
+            required
           />
         </div>
         <br />
@@ -117,6 +121,7 @@ return (
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
+            required
           />
         </div>
         <br />
@@ -128,6 +133,7 @@ return (
             className="w-full mt-2 border h-[35px] rounded-[5px]  border-gray-300  placeholder-gray-400 focus:outline-none hover:ring-blue-500 hover:border-blue-500"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             <option value="Choose a category">Choose a category</option>
             <option value="Electronics">Electronics</option>
@@ -157,6 +163,7 @@ return (
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none hover:ring-blue-500 hover:border-blue-500 sm:text-sm"
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Price"
+            required
           />
         </div>
         <br />
@@ -168,6 +175,7 @@ return (
     checked={negotiationPrice}
     className="mt-2 form-checkbox h-5 w-5 text-blue-600"
     onChange={(e) => setNegotiationPrice(e.target.checked)}
+   
   />
 </div>
         <div>
@@ -181,6 +189,7 @@ return (
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none hover:ring-blue-500 hover:border-blue-500 sm:text-sm"
             onChange={(e) => setStock(e.target.value)}
             placeholder="Amount to sell"
+            required
           />
         </div>
         <br />
@@ -198,6 +207,7 @@ return (
               // className="hidden"
               multiple
               onChange={handleFileUpload}
+              required
             />
             {/* <lable htmlFor="upload">
             <AiFillFileImage size={30} className="mt-3 " color="#555" />
@@ -225,11 +235,16 @@ return (
        
       </form>
       <div/>
-    
+      <div className="flex justify-center">
+      {updateSuccess && (
+          <p className="text-green-600 mt-4">Product created successfully!</p>
+        )}
+      </div>
+     
      
     </div>
-    <Link to="/seller-dashboard" className="mt-20 text-blue-500">
-        Go to Seller Dashboard
+    <Link to="/profile" className="mt-5 text-blue-500">
+        Go to SellerDashboard to view, update and see the negotiations received from buyers 
       </Link>
     </div>
   );

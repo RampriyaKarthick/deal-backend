@@ -28,9 +28,7 @@ function SellerDashboard() {
     <Link to="/seller/negotiations" className="px-4 py-2 bg-blue-500 text-white rounded-lg">
         Negotiations Received
       </Link>
-    <Link to="/create-product" className="px-4 py-2 bg-blue-500 text-white rounded-lg">
-        Create Product
-      </Link>
+    
       <button onClick={handleToggleProductCreated} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
        View and Update
       </button>

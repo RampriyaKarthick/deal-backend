@@ -21,6 +21,7 @@ import EditUser from "./components/EditUser"
 import Negotiate from "./components/Product/Negotiate";
 import NegotiatedProducts from "./components/NegotiatedProducts";
 import OrderSuccessfull from "./components/OrderSuccessfull";
+import BecomeSeller from "./components/BecomeSeller";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
         <WishlistPage />
         </PrivatePage>}
         />
-<Route path="/seller-dashboard" element={<PrivatePage><SellerDashboard/></PrivatePage>} />
+<Route path="/seller-dashboard" element={<PrivatePage><BecomeSeller/></PrivatePage>} />
 <Route path="/updateproduct/:productName" element={<PrivatePage><UpdateProduct/></PrivatePage>} />
 <Route path="/user-settings" element={<PrivatePage><UserSettingsPage/></PrivatePage>} />
 <Route path="/create-product" element={<PrivatePage><CreateProductPage /></PrivatePage>} />

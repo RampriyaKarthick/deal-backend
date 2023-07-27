@@ -17,6 +17,7 @@ function SellerCard({ product }) {
   const [open, setOpen] = useState(false);
   const [showUpdateProduct, setShowUpdateProduct] = useState(false);
   const isOwnProduct = product.seller === user._id;
+  // const [deleteProduct, setDeleteProduct] = useState(false);
   
 
   
@@ -69,6 +70,7 @@ function SellerCard({ product }) {
       });
       if (response.status === 200) {
         // Product successfully deleted, perform any necessary actions
+        // setDeleteProduct(true);
       }
     } catch (error) {
       console.log("Error deleting product:", error);
@@ -136,6 +138,7 @@ function SellerCard({ product }) {
             onClick={() => DeleteProduct(product._id)}
             title="Delete Product"
           />
+         {/* {setDeleteProduct && <p>Product Deleted Successfully</p>} */}
             <Link to={{pathname:`/updateproduct/${productName}`, state:product}}>
           <FaEdit size={25} className="cursor-pointer absolute right-1 top-25" color="#444" title="Update" />
         </Link>

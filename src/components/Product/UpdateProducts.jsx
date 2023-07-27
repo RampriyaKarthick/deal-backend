@@ -182,15 +182,18 @@ function UpdateProduct() {
             <AiFillFileImage size={30} className="mt-3 " color="#555" />
           </lable> */}
             {/* why don´t you fucking work!?!?!?! shit code */}
-
-            {imageUrl &&
-              imageUrl.map((i) => (
+            {imageUrl.length === 0 ? (
+              <p className="text-gray-500">No created products</p>
+            ) : (
+              imageUrl.map((url, index) => (
                 <img
-      src={URL.createObjectURL(imageUrl[imageUrl.length - 1])}
-      alt=""
-      className="h-[120px] w-[120px] object-cover m-2"
-    />
-              ))}
+                  key={index}
+                  src={URL.createObjectURL(url)}
+                  alt=""
+                  className="h-[120px] w-[120px] object-cover m-2"
+                />
+              ))
+            )}
           </div>
         </div>
         <br />
