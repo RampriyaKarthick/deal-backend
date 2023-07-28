@@ -4,6 +4,7 @@ import Confetti from 'react-confetti';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from "../context/auth.context";
+import { Link } from 'react-router-dom';
 
 
 function OrderSuccessfull() {
@@ -27,6 +28,9 @@ function OrderSuccessfull() {
           <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
           We're expanding our payment options soon!
         </p>
+        <Link to="/" className="text-lg text-blue-500 underline">
+          Go to your profile
+        </Link>
     </div>
       <Confetti {...config} />
       <img
