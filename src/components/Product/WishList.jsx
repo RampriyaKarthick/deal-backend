@@ -9,6 +9,7 @@ function Wishlist() {
   const { user } = useContext(AuthContext);
   const [wishlist, setWishlist] = useState([]);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchUserAndWishlist();
@@ -31,18 +32,7 @@ function Wishlist() {
       // const currentUserEmail = user.email;
       const response = await axios.get(`${server}/user/getuser/${user._id}`);
       setWishlist(response.data.foundUser.wishlist);
-
-      // if (user) {
-      //   response.data.foundUser.map((elem) => {
-      //     if (elem.email === currentUserEmail) {
-      //       // console.log("wishlist",elem.wishlist,"product.id",product._id)
-      //       if (elem.wishlist.length >= 1) {
-      //         return setWishlist(elem.wishlist);
-
-      //       }
-      //     }
-      // });
-      //}
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -51,10 +41,20 @@ function Wishlist() {
   return (
     <div className="fixed top-1 left-1 w-full bg-[#ffffffea] h-screen">
       <div className="h-full w-full mt-[60px] overflow-y-scroll bg-white flex flex-col shadow-sm">
-        {products.map((product) =>
-          wishlist.includes(product._id) ? (
-            <SingleWishlistItem product={product} key={product._id} />
-          ) : null
+    {loading ? ( // Check if the API call is still in progress
+          <div className="flex justify-center items-center h-full">
+            <p className="text-xl text-gray-500">Loading...</p>
+          </div>
+        ) : wishlist?.length === 0 ? (
+          <div className="flex justify-center items-center h-full">
+            <p className="text-xl text-gray-500">Your wishlist is empty :( </p>
+          </div>
+        ) : (
+          products.map((product) =>
+            wishlist?.includes(product._id) ? (
+              <SingleWishlistItem product={product} key={product._id} />
+            ) : null
+          )
         )}
       </div>
     </div>
