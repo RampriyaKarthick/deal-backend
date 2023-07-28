@@ -93,7 +93,7 @@ function Negotiate({ productId }) {
         <div className="bg-white p-6 rounded-lg shadow-lg" style={{ maxWidth: '400px' }}>
           <h2 className="text-2xl font-semibold text-center mb-4">Enter Demanding Price</h2>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
+          {successMessage && <p className="text-green-500 text-sm mb-4">{successMessage}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="demandingPrice">
