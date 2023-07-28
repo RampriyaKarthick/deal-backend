@@ -47,18 +47,17 @@ function ShoppingCart() {
   useEffect(() => {
     fetchUserAndCart();
     
-  }, []);
+  }, [reload]);
 
   const removeItem = (productId) => {
-    return function () {
+    return async function () {
       setReload(!reload);
-      axios
-        .delete(`${server}/cart/${userId}/cart/${productId}`)
-        .then(setReload(!reload))
-
-        .catch(function (error) {
-          console.log("error while trying to post cart", error);
-        });
+      try {
+        await axios.delete(`${server}/cart/${userId}/cart/${productId}`);
+        setReload(!reload);
+      } catch (error) {
+        console.log("error while trying to delete item from cart", error);
+      }
     };
   };
   const confirmCart = async () => {
@@ -107,7 +106,7 @@ console.log(cartToDb)
                 <h3>{cartItem.price * cartItem.amount}$</h3>
                 <button
                   onClick={removeItem(cartItem._id)}
-                  className="bg-[#c02424] m-1 "
+                  className=" bg-[#f59191] m-1  px-4 py-2 rounded-lg text-white hover:bg-[#f59191] "
                 >
                   Remove item
                 </button>
@@ -115,15 +114,19 @@ console.log(cartToDb)
             </div>
           ))}
 
-          <h1 className="flex mt-3">Total price {findTotal()} $</h1>
-          <div>
-            <button
-              onClick={confirmCart}
-              className="flex w-[290px] px-4 py-2 mt-5 bg-blue-500 text-white rounded-lg text-center"
-            >
-              Confirm and continue to shipping
-            </button>
-          </div>
+          {cart.length > 0 && (
+  <div className="flex justify-end items-center">
+    <h1 className="mt-3 text-xl font-semibold">Total price {findTotal()} $</h1>
+    <div className="ml-4">
+      <button
+        onClick={confirmCart}
+        className="w-[290px] px-4 py-2 mt-5 bg-blue-500 text-white rounded-lg text-center"
+      >
+        Confirm and continue to shipping
+      </button>
+    </div>
+  </div>
+)}
         </div>
       </div>
     </div>
