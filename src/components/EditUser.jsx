@@ -11,6 +11,7 @@ function EditUser() {
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(user.password);
   const [avatar, setAvatar] = useState(user.avatar);
+  const [successMessage, setSuccessMessage] = useState('');
 
   // useEffect(() => {
   //   setName(updatedUser.name);
@@ -30,10 +31,7 @@ function EditUser() {
       password,
       avatar
     };
-    // setName(updatedUser.name);
-    // setEmail(user.email);
-    // setPassword(user.password);
-    //  setAvatar(user.avatar);
+   
 
     try {
       const gotToken = localStorage.getItem("authToken");
@@ -41,6 +39,9 @@ function EditUser() {
 
       console.log('Updated User Data:', response.data);
       updateUserEmail(updatedUser.email);
+      setSuccessMessage('User updated successfully!');
+      // setName('');
+      // setEmail('');
     } catch (error) {
       console.error('Error updating user:', error);
     }
@@ -54,8 +55,10 @@ function EditUser() {
   return (
     <div className="edit-user-container min-h-screen flex items-center justify-center">
     <ProfileNavBar />
+   
     <form onSubmit={handleSubmit} className="edit-user-form bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="mb-4">
+    {successMessage && <p className="text-green-500 text-sm mb-4">{successMessage}</p>}
+    <div className="mb-4">
         <label htmlFor="Name" className="block text-gray-700 font-bold mb-2">
           Name:
         </label>
@@ -82,39 +85,11 @@ function EditUser() {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
-
-      {/* <div className="mb-4">
-        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
-          Password:
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-      </div>
-
-   
-      <div className="mb-4">
-        <label htmlFor="avatar" className="block text-gray-700 font-bold mb-2">
-          Avatar:
-        </label>
-        <input
-          type="text"
-          id="avatar"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-      </div>  */}
-
-      <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onSubmit={handleSubmit}>
+<button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onSubmit={handleSubmit}>
         Update
       </button>
     </form>
+    
   </div>
 );
 }

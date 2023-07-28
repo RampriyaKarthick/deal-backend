@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../server";
+import { FaSpinner } from "react-icons/fa"; 
 
 const AuthContext = createContext();
 
@@ -108,7 +109,18 @@ const AuthContextWrapper = (props) => {
         cartLength,
       }}
     >
-      {props.children}
+       {isLoading ? (
+        <div class="flex h-screen">
+  <div class="m-auto">
+    <div class="loading-spinner">
+      <FaSpinner class="spin-icon" />
+    </div>
+  </div>
+</div>
+      ) : (
+        props.children
+      )}
+
     </AuthContext.Provider>
   );
 };
