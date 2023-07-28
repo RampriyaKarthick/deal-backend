@@ -1,9 +1,14 @@
 import React from 'react';
+import { useContext } from "react";
 import Confetti from 'react-confetti';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from "../context/auth.context";
+
 
 function OrderSuccessfull() {
+  const {user} =useContext(AuthContext);
+  const userName = user.name;
   const config = {
     numberOfPieces: 100,
     recycle: false,
@@ -13,6 +18,7 @@ function OrderSuccessfull() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-[#ffffffea]">
     <div className="text-center">
+    <h1 className="text-4xl font-bold text-gray-600 mb-4">Hi {userName}! Your order has been placed</h1>
       <h1 className="text-4xl font-bold text-blue-600 mb-4">Thank You for Your Purchase!</h1>
       <p className="text-lg text-gray-800 mb-2">Your order will be delivered within 24 hours.</p>
       <p className="text-lg text-gray-800 mb-2">Please have the payment amount ready upon delivery.</p>

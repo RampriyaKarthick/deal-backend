@@ -158,7 +158,7 @@ function SingleWishlistItem({ product }) {
               className=" w-[150px] bg-black my-3 mt-6 h-11 flex items-center justify-center align-baseline rounded-[4px]"
             >
               <span className="text-white absolute flex items-center justify-center align-center  ">
-                Add to cart <AiOutlineShoppingCart className="ml-l " />
+                Move to cart <AiOutlineShoppingCart className="ml-l " />
               </span>
             </div>
           </div>
