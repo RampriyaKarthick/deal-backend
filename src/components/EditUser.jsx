@@ -12,15 +12,6 @@ function EditUser() {
   const [password, setPassword] = useState(user.password);
   const [avatar, setAvatar] = useState(user.avatar);
   const [successMessage, setSuccessMessage] = useState('');
-
-  // useEffect(() => {
-  //   setName(updatedUser.name);
-  //   setEmail(user.email);
-  //   setPassword(user.password);
-  //   setAvatar(user.avatar);
-  // }, [user]);
- 
-
   const handleSubmit =  async (e) => {
     e.preventDefault();
 
@@ -40,8 +31,7 @@ function EditUser() {
       console.log('Updated User Data:', response.data);
       updateUserEmail(updatedUser.email);
       setSuccessMessage('User updated successfully!');
-      // setName('');
-      // setEmail('');
+
     } catch (error) {
       console.error('Error updating user:', error);
     }

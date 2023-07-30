@@ -61,21 +61,23 @@ function ShoppingCart() {
     };
   };
   const confirmCart = async () => {
-    // e.preventDefault();
-    console.log("user id",userId)
-    // const cartDataToDb = [userId, cart];
-    console.log("cart on frontend",cart)
-
-    let cartToDb = cart.reduce((acc, {_id, price, amount, name, seller}) =>
-{
-     acc.push({_id, price, amount, name, seller});
-    return acc;
-}, []);
-
-console.log(cartToDb)
     try {
-      await axios.post(`${server}/cart/${user._id}/shoppingcart`, cartToDb)
-      .then (navigate("/shipping-info"));
+      // Create the order
+      const cartToDb = cart.map(({ _id, price, amount, name, seller }) => ({
+        _id,
+        price,
+        amount,
+        name,
+        seller,
+      }));
+  
+      await axios.post(`${server}/cart/${user._id}/shoppingcart`, cartToDb);
+  
+      // Clear the cart in the frontend after the order is created
+      setCart([]);
+  
+      // Navigate to the shipping info page after the order is created
+      navigate("/shipping-info");
     } catch (error) {
       console.log("error while sending cart to db", error);
     }
